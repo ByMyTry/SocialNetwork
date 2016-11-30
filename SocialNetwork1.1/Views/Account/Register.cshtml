@@ -1,0 +1,61 @@
+﻿@model SocialNetwork1._1.Models.RegisterModel
+
+@{
+    Layout = "~/Views/_AuthLayout.cshtml";
+    ViewBag.Title = "Register";
+}
+<div class="row">
+    <div class="col-sm-4"></div>
+    <div class="col-sm-4">
+        <h3 class="text-center">Registration</h3>
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { enctype = "multipart/form-data", role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div>
+                @Html.ValidationSummary(false)
+
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.UserName, new { @class = "form-control", placeholder = "username" })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.SurName, new { @class = "form-control", placeholder = "surname" })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.Email, new { @class = "form-control", placeholder = "email" })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.BirthDay, new { @class = "form-control", type = "date"})
+                </div>
+
+                <div class="form-group">
+                    <label class="btn btn-default btn-file btn">
+                        Select Photo...<input type="file" class="form-control" name="Photo" id="Photo" style="display: none;"/>
+                    </label>
+                </div>
+
+                <div class="form-group">
+                    <div class="radio-inline">@Html.RadioButtonFor(m => m.Gender, "Man", new { @checked = ""})Man</div>
+                    <div class="radio-inline">@Html.RadioButtonFor(m => m.Gender, "Woman")Woman</div>
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.Password, new { @class = "form-control", placeholder = "password", type = "password" })
+                </div>
+
+                <div class="form-group">
+                    @Html.TextBoxFor(model => model.PasswordConfirm, new { @class = "form-control", placeholder = "pass confirm", type = "password" })
+                </div>
+
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block">
+                        Create Account
+                    </button>
+                </div>
+            </div>
+        }
+    </div>
+</div>

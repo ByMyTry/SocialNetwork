@@ -1,0 +1,38 @@
+﻿@model SocialNetwork1._1.Models.LoginModel
+
+@{
+    Layout = "~/Views/_AuthLayout.cshtml";
+    ViewBag.Title = "Login";
+}
+
+<div class="row">
+    <div class="col-md-4"></div>
+    <div class="col-md-4">
+        <h3 class="text-center">Authentication</h3>
+        @using (Html.BeginForm("Login", "Account", FormMethod.Post, new { role = "form" }))
+        {
+            @Html.AntiForgeryToken()
+
+            <div>
+                @Html.ValidationSummary()
+                <input type="hidden" name="returnUrl" value="@ViewBag.returnUrl" />
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.UserName, new { @class = "form-control", placeholder = "username" })
+                </div>
+                <div class="form-group">
+                    @Html.TextBoxFor(x => x.Password, new { @class = "form-control", placeholder = "password" , type = "password"})
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success btn-block">
+                        log in
+                    </button>
+                </div>
+                <div class="form-group">
+                    <a href="@Url.Action("Register", "Account")">
+                        <span class="glyphicon glyphicon-question-sign"></span> I dont have account
+                    </a>
+                </div>
+            </div>
+        }
+    </div>
+</div>
